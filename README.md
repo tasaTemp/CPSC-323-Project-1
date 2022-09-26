@@ -4,7 +4,7 @@
 
 Please modify this section and list your group members in this format.
 
-Example Name ename@nowhere.com
+Tanya Samari (tsamari[AT]csu.fullerton[DOT]edu)
 
 ## What do to
 
