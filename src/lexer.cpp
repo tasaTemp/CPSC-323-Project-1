@@ -172,13 +172,11 @@ token_t Lexer::scan_token(Scanner &scanner) {
 
     ifstream file_path = scanner.getFilePath(); // Retrieving data from scanning_table.csv [scanning_table] (Token table is token_table.csv [token_table])
     int column = scanner.getColumn(), // The current location of the column being read in file
-        line = scanner.getLine(), // The current location of the line being read in file
-        i = NULL;
+        line = scanner.getLine(); // The current location of the line being read in file
 	state_t state = 1; // The current state of the machine; the state is 1 by default
 	char cc; // Current character
-	bool input = false;
 
-	token_t tok = ""; // Token {token_class_t type, string lexeme, string file, int line, int column}
+	token_t tok; // Token {token_class_t type, string lexeme, string file, int line, int column}
     token_class_t tokenType = ""; // Symbol
 
     // Start scanning loop
@@ -196,11 +194,10 @@ token_t Lexer::scan_token(Scanner &scanner) {
             continue;
         }
         // Program recognizes that there is an identifier present
-        else if (tokenType == IDENTIFIER) {
+        else if ( tokenType == IDENTIFIER ) {
             tokenType = token_table.get(state);
 
-            // Checks if there is an identifier is a valid keyword in the map
-
+            // Checks if there is the identifier is a valid keyword
             switch( tokenType )
             {
                 input = true;
@@ -250,10 +247,10 @@ token_t Lexer::scan_token(Scanner &scanner) {
                 case THEN_KEYWORD: // 15
                     cout << "then";
                 case WHILE_KEYWORD: // 17
-                    cout << WHILE_KEYWORD;
+                    cout << "while";
                     break;
                 case DO_KEYWORD: // 18
-                    cout << IF_KEYWORD;
+                    cout << "if";
                     break;
                 case ADD_OP: // 19
                     cout << "+";
@@ -283,7 +280,7 @@ token_t Lexer::scan_token(Scanner &scanner) {
                     }
                     break;
                 case VAR_KEYWORD: // 22
-                    cout << VAR_KEYWORD;
+                    cout << "var";
                     break;
                 case WRITE_OP: // 23
                     cout << "<<";
